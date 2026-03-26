@@ -667,8 +667,12 @@ td .photo-thumb { width: 48px; height: 48px; }
 
     <div class="btn-row" style="flex-direction:row;flex-wrap:nowrap;">
       <button class="btn btn-outline" style="flex:1;text-align:center;" onclick="downloadPDF()">Download PDF</button>
-      <button class="btn btn-secondary" style="flex:1;text-align:center;" onclick="sendEmail()">Send via Email</button>
+      <button class="btn btn-outline" style="flex:1;text-align:center;" onclick="downloadCSV()">Download CSV</button>
+    </div>
+    <div style="font-size:0.75rem;color:#888;margin:-6px 0 10px 2px;">CSV export does not include photos</div>
+    <div class="btn-row" style="flex-direction:row;flex-wrap:nowrap;">
       <button class="btn btn-outline" style="flex:1;text-align:center;" onclick="toggleEmailConfig()">Set Email Address</button>
+      <button class="btn btn-secondary" style="flex:1;text-align:center;" onclick="sendEmail()">Send via Email</button>
     </div>
     <div id="statusMsg"></div>
 
@@ -1548,6 +1552,45 @@ function downloadPDF() {
     msg.style.display = 'block';
     setTimeout(function(){ msg.style.display = 'none'; }, 4000);
   } catch(ex) { alert('Could not generate PDF: ' + ex.message); }
+}
+
+function downloadCSV() {
+  if (!validateSession()) return;
+  if (entries.length === 0) { alert('No groove entries to export.'); return; }
+  var headers = ['Groove #','Roll Groove Tool','Groove Type','Pipe Type','Pipe Size','A Dimension','A Result','C Dimension','C Result','Flare Measurement','Flare Result','Notes','Notes Result','Overall Result'];
+  var rows = entries.map(function(e) {
+    return [
+      e.grooveNumber,
+      e.toolType || '',
+      e.grooveType || '',
+      e.pipeType || '',
+      e.pipeSize || '',
+      e.aDimension || '',
+      e.aDimResult || '',
+      e.cDimension || '',
+      e.cDimResult || '',
+      e.flareMeasurement || '',
+      e.flareResult || '',
+      (e.notes || '').replace(/"/g, '""'),
+      e.notesResult || '',
+      e.overallResult || ''
+    ].map(function(v){ return '"' + v + '"'; }).join(',');
+  });
+  var csv = [headers.map(function(h){ return '"'+h+'"'; }).join(',')].concat(rows).join('\r\n');
+  var s = getSessionInfo();
+  var proj = (s.projectName || 'groove-inspection').replace(/[^a-z0-9]/gi,'_');
+  var date = (s.date || new Date().toISOString().slice(0,10)).replace(/[^a-z0-9]/gi,'_');
+  var filename = proj + '_' + date + '.csv';
+  var blob = new Blob([csv], { type: 'text/csv' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+  var msg = document.getElementById('statusMsg');
+  msg.innerHTML = '&#8681; <strong>' + filename + '</strong> downloaded successfully.';
+  msg.className = 'success';
+  msg.style.display = 'block';
+  setTimeout(function(){ msg.style.display = 'none'; }, 4000);
 }
 
 function toggleHamburger() {
