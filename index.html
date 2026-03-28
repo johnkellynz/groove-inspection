@@ -23,6 +23,18 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+// Preload Victaulic logo for PDF export
+(function() {
+  var img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = function() {
+    var c = document.createElement('canvas');
+    c.width = img.naturalWidth; c.height = img.naturalHeight;
+    c.getContext('2d').drawImage(img, 0, 0);
+    window._victaulicLogoPDF = c.toDataURL('image/png');
+  };
+  img.src = 'Secondary Logo Victaulic Reverse.png';
+})();
 </script>
 <style>
 :root {
@@ -1328,16 +1340,27 @@ function buildPDF() {
   var passGreen = [39,  174, 96];
   var failRed   = [220, 60,  50];
 
-  // ── HEADER ──────────────────────────────────────────────
+  // ── HEADER (mirrors app header) ─────────────────────────
   doc.setFillColor.apply(doc, navy);
-  doc.rect(0, 0, pageW, 16, 'F');
+  doc.rect(0, 0, pageW, 18, 'F');
   doc.setFillColor.apply(doc, orange);
-  doc.rect(0, 16, pageW, 2, 'F');
+  doc.rect(0, 18, pageW, 2, 'F');
+  // Title and subtitle
   doc.setTextColor.apply(doc, white);
   doc.setFontSize(13); doc.setFont('helvetica', 'bold');
-  doc.text('ROLL GROOVE QA REGISTER', margin, 10.5);
+  doc.text('Roll Groove Register', margin, 9);
+  doc.setFontSize(7); doc.setFont('helvetica', 'normal');
+  doc.setTextColor(255, 255, 255); doc.setGState(new doc.GState({ opacity: 0.65 }));
+  doc.text('Victaulic Roll Groove Q.A. Register', margin, 14);
+  doc.setGState(new doc.GState({ opacity: 1 }));
+  // Victaulic logo (right side)
+  try {
+    if (window._victaulicLogoPDF) {
+      doc.addImage(window._victaulicLogoPDF, 'PNG', pageW - margin - 30, 3, 28, 12, undefined, 'FAST');
+    }
+  } catch(e) { /* logo not available */ }
 
-  var y = 22;
+  var y = 24;
 
   // ── SESSION INFO BOX ────────────────────────────────────
   var boxH = s.sessionNotes ? 50 : 38;
@@ -1472,20 +1495,30 @@ function buildPDF() {
     for (var gi = 0; gi < withPhotos.length; gi += 3) {
       var group = withPhotos.slice(gi, gi + 3);
 
-      // ── page header ──
+      // ── page header (mirrors app header) ──
       doc.addPage();
       doc.setFillColor.apply(doc, navy);
-      doc.rect(0, 0, pageW, 14, 'F');
+      doc.rect(0, 0, pageW, 18, 'F');
       doc.setFillColor.apply(doc, orange);
-      doc.rect(0, 14, pageW, 1.5, 'F');
+      doc.rect(0, 18, pageW, 2, 'F');
       doc.setTextColor.apply(doc, white);
-      doc.setFontSize(10); doc.setFont('helvetica', 'bold');
-      doc.text('GROOVE PHOTOS', margin, 9.5);
+      doc.setFontSize(13); doc.setFont('helvetica', 'bold');
+      doc.text('Roll Groove Register', margin, 9);
+      doc.setFontSize(7); doc.setFont('helvetica', 'normal');
+      doc.setTextColor(255, 255, 255); doc.setGState(new doc.GState({ opacity: 0.65 }));
+      doc.text('Groove Photos', margin, 14);
+      doc.setGState(new doc.GState({ opacity: 1 }));
+      try {
+        if (window._victaulicLogoPDF) {
+          doc.addImage(window._victaulicLogoPDF, 'PNG', pageW - margin - 30, 3, 28, 12, undefined, 'FAST');
+        }
+      } catch(e) { /* logo not available */ }
+      doc.setTextColor.apply(doc, white);
       doc.setFontSize(7); doc.setFont('helvetica', 'normal');
       var pgLabel = 'Entries ' + (gi + 1) + '\u2013' + Math.min(gi + 3, withPhotos.length) + ' of ' + withPhotos.length;
-      doc.text(pgLabel, pageW - margin, 9.5, { align: 'right' });
+      doc.text(pgLabel, pageW - margin - 34, 9.5, { align: 'right' });
 
-      var curY = 20;
+      var curY = 24;
 
       group.forEach(function(e, idx) {
         if (idx > 0) curY += entryGap;
@@ -1536,12 +1569,19 @@ function buildPDF() {
     doc.setPage(p);
     doc.setFontSize(6.5); doc.setFont('helvetica', 'normal');
     doc.setTextColor(160, 160, 160);
-    doc.text('Victaulic Roll Groove QA  ·  ' + s.projectName + '  ·  ' + s.date, margin, pageH - 4);
+    doc.text('Roll Groove Register  ·  ' + s.projectName + '  ·  ' + s.date, margin, pageH - 4);
     doc.text('Page ' + p + ' of ' + totalPages, pageW - margin, pageH - 4, { align: 'right' });
   }
 
   // ── RETURN DOC ─────────────────────────────────────────
-  var filename = 'Groove_Inspection_' + s.date + '_' + (s.projectName || 'Report').replace(/[^a-z0-9]/gi, '_') + '.pdf';
+  // Set PDF document properties (controls tab name when opened in browser)
+  doc.setProperties({
+    title: 'Roll Groove Register',
+    subject: 'Roll Groove QA Report - ' + s.projectName,
+    creator: 'Roll Groove Register'
+  });
+
+  var filename = 'Roll_Groove_Register_' + s.date + '_' + (s.projectName || 'Report').replace(/[^a-z0-9]/gi, '_') + '.pdf';
   return { doc: doc, filename: filename };
 }
 
