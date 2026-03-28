@@ -1211,7 +1211,7 @@ function padR(str, len) { str = String(str||''); return str.length >= len ? str.
 function buildEmailBody(s, passed) {
   var div1 = '================================================';
   var lines = [
-    'VICTAULIC GROOVE INSPECTION RECORD',
+    'VICTAULIC ROLL GROOVE QA REGISTER',
     div1,
     'Date:                 ' + s.date,
     'Operator Name:        ' + s.operator,
@@ -1329,7 +1329,7 @@ function buildPDF() {
   doc.rect(0, 16, pageW, 2, 'F');
   doc.setTextColor.apply(doc, white);
   doc.setFontSize(13); doc.setFont('helvetica', 'bold');
-  doc.text('GROOVE INSPECTION RECORD', margin, 10.5);
+  doc.text('ROLL GROOVE QA REGISTER', margin, 10.5);
 
   var y = 22;
 
@@ -1404,7 +1404,6 @@ function buildPDF() {
       (e.flareMeasurement || '').toUpperCase(),
       (e.overallResult || '').toUpperCase(),
       e.notes || '',
-      e.notesResult ? e.notesResult.toUpperCase() : '',
       e.photos && e.photos.length ? e.photos.length + (e.photos.length === 1 ? ' photo' : ' photos') : '—'
     ];
   });
@@ -1412,7 +1411,7 @@ function buildPDF() {
   doc.autoTable({
     startY: y,
     margin: { left: margin, right: margin },
-    head: [['Groove #', 'Tool', 'Pipe Type', 'Type', 'Pipe Size', 'Spool', 'A Dim', 'C Dim', 'Flare', 'Result', 'Notes', 'Notes Result', 'Photos']],
+    head: [['Groove #', 'Tool', 'Pipe Type', 'Type', 'Pipe Size', 'Spool', 'A Dim', 'C Dim', 'Flare', 'Result', 'Observations', 'Photos']],
     body: tableBody,
     theme: 'grid',
     headStyles: {
@@ -1558,7 +1557,7 @@ function downloadPDF() {
 function downloadCSV() {
   if (!validateSession()) return;
   if (entries.length === 0) { alert('No groove entries to export.'); return; }
-  var headers = ['Groove #','Roll Groove Tool','Groove Type','Pipe Type','Pipe Size','A Dimension','A Result','C Dimension','C Result','Flare Measurement','Flare Result','Notes','Notes Result','Overall Result'];
+  var headers = ['Groove #','Roll Groove Tool','Groove Type','Pipe Type','Pipe Size','A Dimension','A Result','C Dimension','C Result','Flare Measurement','Flare Result','Observations','Overall Result'];
   var rows = entries.map(function(e) {
     return [
       e.grooveNumber,
