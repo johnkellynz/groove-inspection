@@ -413,44 +413,51 @@ td .photo-thumb { width: 48px; height: 48px; }
 
 <div class="container">
 
-  <!-- STEP 1: SESSION INFO -->
+  <!-- DATE -->
   <div class="card">
-    <div class="card-title"><span class="step-badge">1</span> Session Information</div>
     <div class="form-grid">
-      <!-- Row 1: Date (full width) -->
       <div class="form-group form-full">
         <label>Date</label>
         <input type="date" id="sessionDate" required>
       </div>
-      <!-- Row 2: Operator Company Name (full width) -->
+    </div>
+  </div>
+
+  <!-- STEP 1: OPERATOR INFORMATION -->
+  <div class="card">
+    <div class="card-title"><span class="step-badge">1</span> Operator Information</div>
+    <div class="form-grid">
       <div class="form-group form-full">
-        <label>Operator Company Name</label>
-        <input type="text" id="companyName" placeholder="Operator Company Name" autocapitalize="words" oninput="toTitleCase(this)" required>
-      </div>
-      <!-- Row 3: Operator First Name | Operator Last Name -->
-      <div class="form-group">
-        <label>Operator First Name</label>
-        <input type="text" id="operatorFirstName" placeholder="Operator First Name" autocapitalize="words" oninput="toTitleCase(this)" required>
+        <label>Company Name</label>
+        <input type="text" id="companyName" placeholder="Company Name" autocapitalize="words" oninput="toTitleCase(this)" required>
       </div>
       <div class="form-group">
-        <label>Operator Last Name</label>
-        <input type="text" id="operatorLastName" placeholder="Operator Last Name" autocapitalize="words" oninput="toTitleCase(this)" required>
+        <label>First Name</label>
+        <input type="text" id="operatorFirstName" placeholder="First Name" autocapitalize="words" oninput="toTitleCase(this)" required>
       </div>
-      <!-- Row 4: Customer Company Name (full width) -->
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" id="operatorLastName" placeholder="Last Name" autocapitalize="words" oninput="toTitleCase(this)" required>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: CUSTOMER INFORMATION -->
+  <div class="card">
+    <div class="card-title"><span class="step-badge">2</span> Customer Information</div>
+    <div class="form-grid">
       <div class="form-group form-full">
-        <label>Customer Company Name</label>
-        <input type="text" id="customerName" placeholder="Customer Company Name" autocapitalize="words" oninput="toTitleCase(this)" required>
-      </div>
-      <!-- Row 5: Customer First Name | Customer Last Name -->
-      <div class="form-group">
-        <label>Customer First Name</label>
-        <input type="text" id="customerFirstName" placeholder="Customer First Name" autocapitalize="words" oninput="toTitleCase(this)" required>
+        <label>Company Name</label>
+        <input type="text" id="customerName" placeholder="Company Name" autocapitalize="words" oninput="toTitleCase(this)" required>
       </div>
       <div class="form-group">
-        <label>Customer Last Name</label>
-        <input type="text" id="customerLastName" placeholder="Customer Last Name" autocapitalize="words" oninput="toTitleCase(this)" required>
+        <label>First Name</label>
+        <input type="text" id="customerFirstName" placeholder="First Name" autocapitalize="words" oninput="toTitleCase(this)" required>
       </div>
-      <!-- Row 4: Project Name | Project Location -->
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" id="customerLastName" placeholder="Last Name" autocapitalize="words" oninput="toTitleCase(this)" required>
+      </div>
       <div class="form-group">
         <label>Project Name</label>
         <input type="text" id="projectName" placeholder="Project Name" autocapitalize="words" oninput="toTitleCase(this)" required>
@@ -459,7 +466,6 @@ td .photo-thumb { width: 48px; height: 48px; }
         <label>Project Location</label>
         <input type="text" id="projectLocation" placeholder="Project Location" autocapitalize="words" oninput="toTitleCase(this)" required>
       </div>
-      <!-- Row 5: Session Comments (full width, optional) -->
       <div class="form-group form-full">
         <label>Comments <span style="font-weight:400;font-size:0.7rem;color:#aaa;">(optional)</span></label>
         <textarea id="sessionNotes" placeholder="Any general comments for this session..." rows="2" autocapitalize="sentences" style="resize:vertical;font-family:inherit;font-size:0.95rem;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;color:var(--text);background:#fff;line-height:1.5;"></textarea>
@@ -467,9 +473,9 @@ td .photo-thumb { width: 48px; height: 48px; }
     </div>
   </div>
 
-  <!-- STEP 2: GROOVE ENTRY -->
+  <!-- STEP 3: GROOVE ENTRY -->
   <div class="card">
-    <div class="card-title"><span class="step-badge">2</span> Groove Entry</div>
+    <div class="card-title"><span class="step-badge">3</span> Groove Entry</div>
 
     <div class="entry-grid">
       <div class="form-group">
@@ -625,7 +631,7 @@ td .photo-thumb { width: 48px; height: 48px; }
 
   <!-- STEP 3: ENTRIES TABLE -->
   <div class="card">
-    <div class="card-title"><span class="step-badge">3</span> Groove Log</div>
+    <div class="card-title"><span class="step-badge">4</span> Groove Log</div>
 
     <div class="summary-bar" id="summaryBar" style="display:none;">
       <div class="summary-item">Total<span id="sumTotal">0</span></div>
@@ -662,7 +668,7 @@ td .photo-thumb { width: 48px; height: 48px; }
 
   <!-- STEP 4: EMAIL -->
   <div class="card">
-    <div class="card-title"><span class="step-badge">4</span> Results</div>
+    <div class="card-title"><span class="step-badge">5</span> Results</div>
 
     <div class="btn-row" style="flex-direction:row;flex-wrap:nowrap;">
       <button class="btn btn-outline" style="flex:1;text-align:center;line-height:1.3;" onclick="downloadPDF()">Download PDF<br><span style="font-size:0.7rem;font-weight:400;color:var(--vic-orange);">With Photos</span></button>
