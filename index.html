@@ -405,6 +405,7 @@ td .photo-thumb { width: 48px; height: 48px; }
       <a href="https://assets.victaulic.com/assets/uploads/literature/I-100.pdf" target="_blank">&#128196; Victaulic I-100 Field Installation Handbook</a>
       <a href="https://assets.victaulic.com/assets/uploads/literature/I-W100.pdf" target="_blank">&#128196; Victaulic I-W100 Field Installation Handbook</a>
       <a href="https://www.victaulic.com/" target="_blank">&#127760; Victaulic Website</a>
+      <a href="#" onclick="shareApp(); return false;">&#128279; Share This App</a>
     </div>
   </div>
 </div>
@@ -1585,6 +1586,20 @@ function downloadCSV() {
   msg.className = 'success';
   msg.style.display = 'block';
   setTimeout(function(){ msg.style.display = 'none'; }, 4000);
+}
+
+function shareApp() {
+  toggleHamburger();
+  var shareData = { title: "Roll Groove Register", text: "Victaulic Roll Groove Register", url: window.location.href };
+  if (navigator.share) {
+    navigator.share(shareData).catch(function() {});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      alert("Link copied to clipboard!");
+    }).catch(function() {
+      prompt("Copy this link:", window.location.href);
+    });
+  }
 }
 
 function toggleHamburger() {
