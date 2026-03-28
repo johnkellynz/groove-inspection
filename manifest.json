@@ -1,7 +1,7 @@
 {
-  "name": "Roll Groove QA Register",
-  "short_name": "Roll Groove QA Register",
-  "description": "Victaulic Roll Groove QA Register tool",
+  "name": "Roll Groove QA",
+  "short_name": "Roll Groove QA",
+  "description": "Victaulic Roll Groove QA tool",
   "start_url": "/victaulic-groove-inspector/",
   "scope": "/victaulic-groove-inspector/",
   "display": "standalone",
