@@ -1448,6 +1448,7 @@ function buildPDF() {
       textColor: white,
       fontStyle: 'bold',
       fontSize: 7,
+      halign: 'center',
       cellPadding: { top: 3, bottom: 3, left: 3, right: 3 }
     },
     bodyStyles: {
@@ -1457,19 +1458,19 @@ function buildPDF() {
     },
     alternateRowStyles: { fillColor: [250, 250, 252] },
     columnStyles: {
-      0:  { cellWidth: 36 },
-      1:  { cellWidth: 18 },
-      2:  { cellWidth: 18 },
-      3:  { cellWidth: 16 },
-      4:  { cellWidth: 20 },
-      5:  { cellWidth: 16 },
-      6:  { cellWidth: 13 },
-      7:  { cellWidth: 13 },
-      8:  { cellWidth: 13 },
-      9:  { cellWidth: 14 },
+      0:  { cellWidth: 36, halign: 'center' },
+      1:  { cellWidth: 18, halign: 'center' },
+      2:  { cellWidth: 18, halign: 'center' },
+      3:  { cellWidth: 16, halign: 'center' },
+      4:  { cellWidth: 20, halign: 'center' },
+      5:  { cellWidth: 16, halign: 'center' },
+      6:  { cellWidth: 13, halign: 'center' },
+      7:  { cellWidth: 13, halign: 'center' },
+      8:  { cellWidth: 13, halign: 'center' },
+      9:  { cellWidth: 14, halign: 'center' },
       10: { cellWidth: 'auto' },
-      11: { cellWidth: 18 },
-      12: { cellWidth: 16 }
+      11: { cellWidth: 18, halign: 'center' },
+      12: { cellWidth: 16, halign: 'center' }
     },
     didParseCell: function(data) {
       if (data.section === 'body') {
