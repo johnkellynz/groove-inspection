@@ -1363,25 +1363,25 @@ function buildPDF() {
   var y = 24;
 
   // ── SESSION INFO BOX ────────────────────────────────────
-  var boxH = s.sessionNotes ? 50 : 38;
+  var boxH = s.sessionNotes ? 56 : 44;
   doc.setFillColor.apply(doc, lightGrey);
   doc.roundedRect(margin, y, contentW, boxH, 2, 2, 'F');
   doc.setDrawColor.apply(doc, midGrey);
   doc.roundedRect(margin, y, contentW, boxH, 2, 2, 'S');
   // vertical divider (only across the top 3 rows)
   doc.setDrawColor.apply(doc, midGrey);
-  doc.line(margin + contentW / 2, y + 3, margin + contentW / 2, y + 38 - 3);
+  doc.line(margin + contentW / 2, y + 3, margin + contentW / 2, y + 44 - 3);
 
   var c1 = margin + 5, c2 = margin + contentW / 2 + 5;
   function infoCell(label, value, x, cy) {
-    doc.setFontSize(6); doc.setFont('helvetica', 'normal');
-    doc.setTextColor(130, 130, 130);
+    doc.setFontSize(7); doc.setFont('helvetica', 'bold');
+    doc.setTextColor.apply(doc, orange);
     doc.text(label.toUpperCase(), x, cy);
-    doc.setFontSize(8.5); doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9.5); doc.setFont('helvetica', 'bold');
     doc.setTextColor.apply(doc, navy);
-    doc.text(String(value || '—'), x, cy + 4.5);
+    doc.text(String(value || '—'), x, cy + 5);
   }
-  var r1 = y + 8, r2 = y + 20, r3 = y + 32;
+  var r1 = y + 9, r2 = y + 23, r3 = y + 37;
   infoCell('Date', s.date, c1, r1);
   infoCell('Project Name', s.projectName, c2, r1);
   infoCell('Operator', s.operator + '  ·  ' + s.company, c1, r2);
@@ -1391,8 +1391,8 @@ function buildPDF() {
   infoCell('Generated', genDate, c2, r3);
   if (s.sessionNotes) {
     doc.setDrawColor.apply(doc, midGrey);
-    doc.line(margin + 3, y + 40, margin + contentW - 3, y + 40);
-    infoCell('Comments', s.sessionNotes, c1, y + 44);
+    doc.line(margin + 3, y + 46, margin + contentW - 3, y + 46);
+    infoCell('Comments', s.sessionNotes, c1, y + 50);
   }
 
   y += boxH + 5;
