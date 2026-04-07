@@ -458,9 +458,9 @@ td .photo-thumb { width: 48px; height: 48px; }
     </div>
   </div>
 
-  <!-- STEP 1: OPERATOR INFORMATION -->
+  <!-- STEP 1: TECHNICIAN INFORMATION -->
   <div class="card">
-    <div class="card-title"><span class="step-badge">1</span> Operator Information</div>
+    <div class="card-title"><span class="step-badge">1</span> Technician Information</div>
     <div class="form-grid">
       <div class="form-group form-full">
         <label>Company Name</label>
@@ -586,46 +586,78 @@ td .photo-thumb { width: 48px; height: 48px; }
         <input type="text" id="pipeSizeOther" placeholder="Specify pipe size" style="display:none;margin-top:6px;">
       </div>
 
-      <div class="entry-full">
-        <div class="form-group">
-          <label>Spool Length</label>
-          <div style="display:flex;gap:6px;align-items:stretch;">
-            <input type="number" id="spoolLength" placeholder="Length" min="0" step="any" style="flex:1;min-width:0;">
-            <select id="spoolUnit" onchange="onSpoolUnitChange()" style="width:76px;flex-shrink:0;">
-              <option value="">Unit</option>
-              <option value="mm" selected>mm</option>
-              <option value="mtr">mtr</option>
-              <option value="in">in</option>
-              <option value="ft">ft</option>
-            </select>
-            <button id="spoolUnitBadge" onclick="resetSpoolUnit()" title="Click to change unit" style="display:none;width:76px;flex-shrink:0;border:2px solid var(--vic-orange);background:var(--vic-orange);color:#fff;border-radius:7px;font-size:0.9rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;"></button>
-          </div>
+      <div class="form-group">
+        <label>Spool Number</label>
+        <input type="text" id="spoolNumber" placeholder="Spool #">
+      </div>
+
+      <div class="form-group">
+        <label>Spool Length</label>
+        <div style="display:flex;gap:6px;align-items:stretch;">
+          <input type="number" id="spoolLength" placeholder="Length" min="0" step="any" style="flex:1;min-width:0;">
+          <select id="spoolUnit" onchange="onSpoolUnitChange()" style="width:76px;flex-shrink:0;">
+            <option value="">Unit</option>
+            <option value="mm" selected>mm</option>
+            <option value="mtr">mtr</option>
+            <option value="in">in</option>
+            <option value="ft">ft</option>
+          </select>
+          <button id="spoolUnitBadge" onclick="resetSpoolUnit()" title="Click to change unit" style="display:none;width:76px;flex-shrink:0;border:2px solid var(--vic-orange);background:var(--vic-orange);color:#fff;border-radius:7px;font-size:0.9rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;"></button>
         </div>
       </div>
     </div>
 
     <div style="margin-top:6px;">
-      <div class="pf-row">
-        <span class="pf-label">A Dimension</span>
-        <div class="pf-btns">
-          <button class="pf-btn" id="aDimPass" onclick="setPF('aDim','pass')">&#10003; PASS</button>
-          <button class="pf-btn" id="aDimFail" onclick="setPF('aDim','fail')">&#10007; FAIL</button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <!-- Groove 1 -->
+        <div style="border:1.5px solid var(--border);border-radius:8px;padding:10px;">
+          <div style="font-weight:700;font-size:0.85rem;margin-bottom:8px;color:var(--vic-orange);">Groove 1</div>
+          <div class="pf-row">
+            <span class="pf-label">A Dimension</span>
+            <div class="pf-btns">
+              <button class="pf-btn" id="g1aDimPass" onclick="setPF('g1aDim','pass')">&#10003; PASS</button>
+              <button class="pf-btn" id="g1aDimFail" onclick="setPF('g1aDim','fail')">&#10007; FAIL</button>
+            </div>
+          </div>
+          <div class="pf-row">
+            <span class="pf-label">C Dimension</span>
+            <div class="pf-btns">
+              <button class="pf-btn" id="g1cDimPass" onclick="setPF('g1cDim','pass')">&#10003; PASS</button>
+              <button class="pf-btn" id="g1cDimFail" onclick="setPF('g1cDim','fail')">&#10007; FAIL</button>
+            </div>
+          </div>
+          <div class="pf-row">
+            <span class="pf-label">Flare Measurement</span>
+            <div class="pf-btns">
+              <button class="pf-btn" id="g1flarePass" onclick="setPF('g1flare','pass')">&#10003; PASS</button>
+              <button class="pf-btn" id="g1flareFail" onclick="setPF('g1flare','fail')">&#10007; FAIL</button>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="pf-row">
-        <span class="pf-label">C Dimension</span>
-        <div class="pf-btns">
-          <button class="pf-btn" id="cDimPass" onclick="setPF('cDim','pass')">&#10003; PASS</button>
-          <button class="pf-btn" id="cDimFail" onclick="setPF('cDim','fail')">&#10007; FAIL</button>
-        </div>
-      </div>
-
-      <div class="pf-row">
-        <span class="pf-label">Flare Measurement</span>
-        <div class="pf-btns">
-          <button class="pf-btn" id="flarePass" onclick="setPF('flare','pass')">&#10003; PASS</button>
-          <button class="pf-btn" id="flareFail" onclick="setPF('flare','fail')">&#10007; FAIL</button>
+        <!-- Groove 2 -->
+        <div style="border:1.5px solid var(--border);border-radius:8px;padding:10px;">
+          <div style="font-weight:700;font-size:0.85rem;margin-bottom:8px;color:var(--vic-orange);">Groove 2</div>
+          <div class="pf-row">
+            <span class="pf-label">A Dimension</span>
+            <div class="pf-btns">
+              <button class="pf-btn" id="g2aDimPass" onclick="setPF('g2aDim','pass')">&#10003; PASS</button>
+              <button class="pf-btn" id="g2aDimFail" onclick="setPF('g2aDim','fail')">&#10007; FAIL</button>
+            </div>
+          </div>
+          <div class="pf-row">
+            <span class="pf-label">C Dimension</span>
+            <div class="pf-btns">
+              <button class="pf-btn" id="g2cDimPass" onclick="setPF('g2cDim','pass')">&#10003; PASS</button>
+              <button class="pf-btn" id="g2cDimFail" onclick="setPF('g2cDim','fail')">&#10007; FAIL</button>
+            </div>
+          </div>
+          <div class="pf-row">
+            <span class="pf-label">Flare Measurement</span>
+            <div class="pf-btns">
+              <button class="pf-btn" id="g2flarePass" onclick="setPF('g2flare','pass')">&#10003; PASS</button>
+              <button class="pf-btn" id="g2flareFail" onclick="setPF('g2flare','fail')">&#10007; FAIL</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -652,7 +684,7 @@ td .photo-thumb { width: 48px; height: 48px; }
             <input type="file" id="photoCapture" accept="image/*" capture="environment" multiple style="display:none;" onchange="onPhotosAdded(this)">
           </label>
           <label class="photo-btn">
-            &#128193; Choose File
+            &#128193; Choose Photo
             <input type="file" id="photoFile" accept="image/*" multiple style="display:none;" onchange="onPhotosAdded(this)">
           </label>
         </div>
@@ -684,12 +716,16 @@ td .photo-thumb { width: 48px; height: 48px; }
             <th>Groove #</th>
             <th>Tool</th>
             <th>Groove Type</th>
+            <th>Spool #</th>
             <th>Spool Length</th>
             <th>Pipe Type</th>
             <th>Size</th>
-            <th>A Dim</th>
-            <th>C Dim</th>
-            <th>Flare</th>
+            <th>G1 A</th>
+            <th>G1 C</th>
+            <th>G1 Flare</th>
+            <th>G2 A</th>
+            <th>G2 C</th>
+            <th>G2 Flare</th>
             <th>Result</th>
             <th>Notes</th>
             <th>Obs. Result</th>
@@ -697,7 +733,7 @@ td .photo-thumb { width: 48px; height: 48px; }
           </tr>
         </thead>
         <tbody id="entriesBody">
-          <tr class="empty-row"><td colspan="13">No groove entries yet — add your first entry above.</td></tr>
+          <tr class="empty-row"><td colspan="18">No groove entries yet — add your first entry above.</td></tr>
         </tbody>
       </table>
     </div>
@@ -729,7 +765,7 @@ td .photo-thumb { width: 48px; height: 48px; }
 <script>
 var entries = [];
 var counter = 0;
-var sel = { aDim: null, cDim: null, flare: null, notesChk: null };
+var sel = { g1aDim: null, g1cDim: null, g1flare: null, g2aDim: null, g2cDim: null, g2flare: null, notesChk: null };
 var sessionSpoolUnit = 'mm';
 var pendingPhotos = [];
 
@@ -766,9 +802,12 @@ var pendingPhotos = [];
 function setPF(field, value) {
   sel[field] = value;
   var map = {
-    aDim: ['aDimPass','aDimFail'],
-    cDim: ['cDimPass','cDimFail'],
-    flare: ['flarePass','flareFail'],
+    g1aDim: ['g1aDimPass','g1aDimFail'],
+    g1cDim: ['g1cDimPass','g1cDimFail'],
+    g1flare: ['g1flarePass','g1flareFail'],
+    g2aDim: ['g2aDimPass','g2aDimFail'],
+    g2cDim: ['g2cDimPass','g2cDimFail'],
+    g2flare: ['g2flarePass','g2flareFail'],
     notesChk: ['notesChkPass','notesChkFail']
   };
   var ids = map[field];
@@ -826,7 +865,7 @@ function onNotesInput() {
 
 function genGrooveNum() {
   counter++;
-  // Operator initials from first + last name fields
+  // Technician initials from first + last name fields
   var firstName = (document.getElementById('operatorFirstName').value || '').trim();
   var lastName = (document.getElementById('operatorLastName').value || '').trim();
   var initials = ((firstName ? firstName.charAt(0).toUpperCase() : '') + (lastName ? lastName.charAt(0).toUpperCase() : '')) || 'XX';
@@ -852,14 +891,19 @@ function addEntry() {
   var pipeSize = pipeSizeSel === 'Other' ? document.getElementById('pipeSizeOther').value.trim() : pipeSizeSel;
   if (!pipeSize) { alert('Please select or specify a Pipe Size.'); return; }
 
-  if (!sel.aDim) { alert('Please set A Dimension pass/fail.'); return; }
-  if (!sel.cDim) { alert('Please set C Dimension pass/fail.'); return; }
-  if (!sel.flare) { alert('Please set Flare Measurement pass/fail.'); return; }
+  if (!sel.g1aDim) { alert('Please set Groove 1 — A Dimension pass/fail.'); return; }
+  if (!sel.g1cDim) { alert('Please set Groove 1 — C Dimension pass/fail.'); return; }
+  if (!sel.g1flare) { alert('Please set Groove 1 — Flare Measurement pass/fail.'); return; }
+  if (!sel.g2aDim) { alert('Please set Groove 2 — A Dimension pass/fail.'); return; }
+  if (!sel.g2cDim) { alert('Please set Groove 2 — C Dimension pass/fail.'); return; }
+  if (!sel.g2flare) { alert('Please set Groove 2 — Flare Measurement pass/fail.'); return; }
 
   var notes = document.getElementById('notesInput').value.trim();
   if (notes && !sel.notesChk) { alert('You have notes — please set Observation Result pass/fail.'); return; }
 
-  var ov = (sel.aDim==='pass' && sel.cDim==='pass' && sel.flare==='pass') ? 'PASS' : 'FAIL';
+  var ov = (sel.g1aDim==='pass' && sel.g1cDim==='pass' && sel.g1flare==='pass' && sel.g2aDim==='pass' && sel.g2cDim==='pass' && sel.g2flare==='pass') ? 'PASS' : 'FAIL';
+
+  var spoolNumber = document.getElementById('spoolNumber').value.trim();
 
   var spoolVal = document.getElementById('spoolLength').value.trim();
   var spoolUnit = sessionSpoolUnit || document.getElementById('spoolUnit').value;
@@ -870,12 +914,16 @@ function addEntry() {
     grooveNumber: genGrooveNum(),
     toolType: toolType,
     grooveType: document.getElementById('grooveType').value,
+    spoolNumber: spoolNumber,
     spoolLength: spoolLength,
     pipeType: pipeType,
     pipeSize: pipeSize,
-    aDimension: sel.aDim,
-    cDimension: sel.cDim,
-    flareMeasurement: sel.flare,
+    g1aDimension: sel.g1aDim,
+    g1cDimension: sel.g1cDim,
+    g1flare: sel.g1flare,
+    g2aDimension: sel.g2aDim,
+    g2cDimension: sel.g2cDim,
+    g2flare: sel.g2flare,
     overallResult: ov,
     notes: notes,
     notesResult: notes ? sel.notesChk : null,
@@ -889,6 +937,7 @@ function addEntry() {
 
 function clearForm() {
   // Roll Groove Tool, Pipe Type, Groove Type, Pipe Size intentionally NOT reset — they repeat between entries
+  document.getElementById('spoolNumber').value = '';
   document.getElementById('spoolLength').value = '';
   // spoolUnit is intentionally NOT reset — it persists for the whole session
   document.getElementById('notesInput').value = '';
@@ -900,8 +949,8 @@ function clearForm() {
   var photoBtns = document.getElementById('photoBtns');
   if (photoBtns) photoBtns.style.display = 'flex';
 
-  sel = { aDim: null, cDim: null, flare: null, notesChk: null };
-  ['aDimPass','aDimFail','cDimPass','cDimFail','flarePass','flareFail','notesChkPass','notesChkFail'].forEach(function(id) {
+  sel = { g1aDim: null, g1cDim: null, g1flare: null, g2aDim: null, g2cDim: null, g2flare: null, notesChk: null };
+  ['g1aDimPass','g1aDimFail','g1cDimPass','g1cDimFail','g1flarePass','g1flareFail','g2aDimPass','g2aDimFail','g2cDimPass','g2cDimFail','g2flarePass','g2flareFail','notesChkPass','notesChkFail'].forEach(function(id) {
     document.getElementById(id).className = 'pf-btn';
   });
   // Re-apply unit badge if a unit has been selected for this session
@@ -965,7 +1014,7 @@ function renderTable() {
   var bar = document.getElementById('summaryBar');
 
   if (entries.length === 0) {
-    tbody.innerHTML = '<tr class="empty-row"><td colspan="14" style="text-align:center;">No groove entries yet — add your first entry above.</td></tr>';
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="18" style="text-align:center;">No groove entries yet — add your first entry above.</td></tr>';
     bar.style.display = 'none';
     return;
   }
@@ -983,12 +1032,16 @@ function renderTable() {
       '<td class="groove-num">' + e.grooveNumber + '</td>' +
       '<td>' + (e.toolType||'') + '</td>' +
       '<td>' + (e.grooveType||'—') + '</td>' +
+      '<td>' + (e.spoolNumber||'—') + '</td>' +
       '<td>' + (e.spoolLength||'—') + '</td>' +
       '<td>' + (e.pipeType||'') + '</td>' +
       '<td>' + (e.pipeSize||'') + '</td>' +
-      '<td>' + badge(e.aDimension) + '</td>' +
-      '<td>' + badge(e.cDimension) + '</td>' +
-      '<td>' + badge(e.flareMeasurement) + '</td>' +
+      '<td>' + badge(e.g1aDimension) + '</td>' +
+      '<td>' + badge(e.g1cDimension) + '</td>' +
+      '<td>' + badge(e.g1flare) + '</td>' +
+      '<td>' + badge(e.g2aDimension) + '</td>' +
+      '<td>' + badge(e.g2cDimension) + '</td>' +
+      '<td>' + badge(e.g2flare) + '</td>' +
       '<td>' + badge(e.overallResult) + '</td>' +
       '<td style="max-width:160px;word-break:break-word;">' + (e.notes||'') + '</td>' +
       '<td>' + badge(e.notesResult) + '</td>' +
@@ -1051,9 +1104,12 @@ var inlineEdit = {};
 function editEntry(i) {
   var e = entries[i];
   inlineEdit = {
-    aDim: e.aDimension ? e.aDimension.toLowerCase() : null,
-    cDim: e.cDimension ? e.cDimension.toLowerCase() : null,
-    flare: e.flareMeasurement ? e.flareMeasurement.toLowerCase() : null,
+    g1aDim: e.g1aDimension ? e.g1aDimension.toLowerCase() : null,
+    g1cDim: e.g1cDimension ? e.g1cDimension.toLowerCase() : null,
+    g1flare: e.g1flare ? e.g1flare.toLowerCase() : null,
+    g2aDim: e.g2aDimension ? e.g2aDimension.toLowerCase() : null,
+    g2cDim: e.g2cDimension ? e.g2cDimension.toLowerCase() : null,
+    g2flare: e.g2flare ? e.g2flare.toLowerCase() : null,
     notesChk: e.notesResult ? e.notesResult.toLowerCase() : null
   };
   editingIndex = i;
@@ -1083,29 +1139,37 @@ function saveInlineEdit(i) {
   if (!pipeSize) { alert('Please select or specify a Pipe Size.'); return; }
 
   var grooveType = document.getElementById('ie_grooveType').value;
+  var spoolNumber = document.getElementById('ie_spoolNumber').value.trim();
   var spoolVal = document.getElementById('ie_spoolLength').value.trim();
   var spoolUnit = document.getElementById('ie_spoolUnit').value;
   var spoolLength = spoolVal ? (spoolVal + ' ' + spoolUnit).trim() : '';
 
-  if (!inlineEdit.aDim) { alert('Please set A Dimension pass/fail.'); return; }
-  if (!inlineEdit.cDim) { alert('Please set C Dimension pass/fail.'); return; }
-  if (!inlineEdit.flare) { alert('Please set Flare Measurement pass/fail.'); return; }
+  if (!inlineEdit.g1aDim) { alert('Please set Groove 1 — A Dimension pass/fail.'); return; }
+  if (!inlineEdit.g1cDim) { alert('Please set Groove 1 — C Dimension pass/fail.'); return; }
+  if (!inlineEdit.g1flare) { alert('Please set Groove 1 — Flare Measurement pass/fail.'); return; }
+  if (!inlineEdit.g2aDim) { alert('Please set Groove 2 — A Dimension pass/fail.'); return; }
+  if (!inlineEdit.g2cDim) { alert('Please set Groove 2 — C Dimension pass/fail.'); return; }
+  if (!inlineEdit.g2flare) { alert('Please set Groove 2 — Flare Measurement pass/fail.'); return; }
 
   var notes = document.getElementById('ie_notes').value.trim();
   if (notes && !inlineEdit.notesChk) { alert('You have notes — please set Observation Result pass/fail.'); return; }
 
-  var ov = (inlineEdit.aDim === 'pass' && inlineEdit.cDim === 'pass' && inlineEdit.flare === 'pass') ? 'PASS' : 'FAIL';
+  var ov = (inlineEdit.g1aDim === 'pass' && inlineEdit.g1cDim === 'pass' && inlineEdit.g1flare === 'pass' && inlineEdit.g2aDim === 'pass' && inlineEdit.g2cDim === 'pass' && inlineEdit.g2flare === 'pass') ? 'PASS' : 'FAIL';
 
   entries[i] = {
     grooveNumber: entries[i].grooveNumber,
     toolType: toolType,
     grooveType: grooveType,
+    spoolNumber: spoolNumber,
     spoolLength: spoolLength,
     pipeType: pipeType,
     pipeSize: pipeSize,
-    aDimension: inlineEdit.aDim,
-    cDimension: inlineEdit.cDim,
-    flareMeasurement: inlineEdit.flare,
+    g1aDimension: inlineEdit.g1aDim,
+    g1cDimension: inlineEdit.g1cDim,
+    g1flare: inlineEdit.g1flare,
+    g2aDimension: inlineEdit.g2aDim,
+    g2cDimension: inlineEdit.g2cDim,
+    g2flare: inlineEdit.g2flare,
     overallResult: ov,
     notes: notes,
     notesResult: notes ? inlineEdit.notesChk : null,
@@ -1121,8 +1185,8 @@ function setIEPF(field, val) {
     var el = document.getElementById('ie_' + field + s);
     if (el) el.className = 'pf-btn' + (val === s.toLowerCase() ? ' active-' + s.toLowerCase() : '');
   });
-  if (field === 'aDim' || field === 'cDim' || field === 'flare') {
-    var ov = (inlineEdit.aDim === 'pass' && inlineEdit.cDim === 'pass' && inlineEdit.flare === 'pass') ? 'PASS' : 'FAIL';
+  if (['g1aDim','g1cDim','g1flare','g2aDim','g2cDim','g2flare'].indexOf(field) !== -1) {
+    var ov = (inlineEdit.g1aDim === 'pass' && inlineEdit.g1cDim === 'pass' && inlineEdit.g1flare === 'pass' && inlineEdit.g2aDim === 'pass' && inlineEdit.g2cDim === 'pass' && inlineEdit.g2flare === 'pass') ? 'PASS' : 'FAIL';
     var el = document.getElementById('ie_overallResult');
     if (el) el.innerHTML = badge(ov);
   }
@@ -1185,13 +1249,17 @@ function renderEditRow(e, i) {
     '</td>' +
     '<td style="vertical-align:top;padding-top:8px;font-size:0.78rem;font-weight:600;white-space:nowrap;">' + e.grooveNumber + '</td>' +
     '<td style="vertical-align:top;min-width:110px;">' + mkSel('ie_tool', ['RG2300','RG3210','RG3400','RG4200','VE271','VE417','VE460'], e.toolType||'') + '</td>' +
-    '<td style="vertical-align:top;min-width:90px;"><select id="ie_grooveType" style="' + s + '"><option value="">—</option>' + ['OGS','AGS','Cut Groove'].map(function(o){ return '<option value="'+o+'"'+(o===e.grooveType?' selected':'')+'>'+o+'</option>'; }).join('') + '</select></td>' +
+    '<td style="vertical-align:top;min-width:90px;"><select id="ie_grooveType" style="' + s + '"><option value="">—</option>' + ['OGS','AGS','Cut Groove','End Seal','Other'].map(function(o){ return '<option value="'+o+'"'+(o===e.grooveType?' selected':'')+'>'+o+'</option>'; }).join('') + '</select></td>' +
+    '<td style="vertical-align:top;min-width:80px;"><input type="text" id="ie_spoolNumber" value="' + (e.spoolNumber||'').replace(/"/g,'&quot;') + '" placeholder="Spool #" style="' + s + '"></td>' +
     '<td style="vertical-align:top;min-width:110px;"><div style="display:flex;gap:4px;"><input type="number" id="ie_spoolLength" value="' + spoolNum + '" min="0" step="any" style="flex:1;min-width:0;font-size:0.78rem;"><select id="ie_spoolUnit" style="width:54px;font-size:0.78rem;">' + ['','mm','mtr','in','ft'].map(function(u){ return '<option value="'+u+'"'+(u===spoolUnit?' selected':'')+'>'+( u||'Unit')+'</option>'; }).join('') + '</select></div></td>' +
     '<td style="vertical-align:top;min-width:130px;">' + mkSel('ie_pipeType', ['Carbon Steel Sch 10','Carbon Steel Sch 40','Carbon Steel Sch 80','Stainless Steel Sch 10S','Stainless Steel Sch 40S','CPVC','PVC'], e.pipeType||'') + '</td>' +
     '<td style="vertical-align:top;min-width:110px;">' + mkSel('ie_pipeSize', ['3/4" (DN20)','1" (DN25)','1-1/4" (DN32)','1-1/2" (DN40)','2" (DN50)','2-1/2" (DN65)','3" (DN80)','3-1/2" (DN90)','4" (DN100)','5" (DN125)','6" (DN150)','8" (DN200)','10" (DN250)','12" (DN300)','14" (DN350)','16" (DN400)','18" (DN450)','20" (DN500)','22" (DN550)','24" (DN600)'], e.pipeSize||'') + '</td>' +
-    '<td style="vertical-align:top;">' + pfBtns('aDim', inlineEdit.aDim) + '</td>' +
-    '<td style="vertical-align:top;">' + pfBtns('cDim', inlineEdit.cDim) + '</td>' +
-    '<td style="vertical-align:top;">' + pfBtns('flare', inlineEdit.flare) + '</td>' +
+    '<td style="vertical-align:top;">' + pfBtns('g1aDim', inlineEdit.g1aDim) + '</td>' +
+    '<td style="vertical-align:top;">' + pfBtns('g1cDim', inlineEdit.g1cDim) + '</td>' +
+    '<td style="vertical-align:top;">' + pfBtns('g1flare', inlineEdit.g1flare) + '</td>' +
+    '<td style="vertical-align:top;">' + pfBtns('g2aDim', inlineEdit.g2aDim) + '</td>' +
+    '<td style="vertical-align:top;">' + pfBtns('g2cDim', inlineEdit.g2cDim) + '</td>' +
+    '<td style="vertical-align:top;">' + pfBtns('g2flare', inlineEdit.g2flare) + '</td>' +
     '<td id="ie_overallResult" style="vertical-align:top;padding-top:6px;">' + badge(ov) + '</td>' +
     '<td style="vertical-align:top;min-width:130px;"><input type="text" id="ie_notes" value="' + (e.notes||'').replace(/"/g,'&quot;') + '" placeholder="Notes..." oninput="onIENotesInput()" style="' + s + '">' + notesResultPf + '</td>' +
     '<td style="vertical-align:top;padding-top:6px;">' + badge(e.notesResult) + '</td>' +
@@ -1215,9 +1283,9 @@ function getSessionInfo() {
 function validateSession() {
   var fields = [
     ['sessionDate', 'Date'],
-    ['operatorFirstName', 'Operator First Name'],
-    ['operatorLastName', 'Operator Last Name'],
-    ['companyName', 'Operator Company Name'],
+    ['operatorFirstName', 'Technician First Name'],
+    ['operatorLastName', 'Technician Last Name'],
+    ['companyName', 'Technician Company Name'],
     ['customerName', 'Customer Company Name'],
     ['customerFirstName', 'Customer First Name'],
     ['customerLastName', 'Customer Last Name'],
@@ -1251,8 +1319,8 @@ function buildEmailBody(s, passed) {
     'VICTAULIC ROLL GROOVE QA REGISTER',
     div1,
     'Date:                 ' + s.date,
-    'Operator Name:        ' + s.operator,
-    'Operator Company:     ' + s.company,
+    'Technician Name:      ' + s.operator,
+    'Technician Company:   ' + s.company,
     'Customer Company:     ' + s.customerName,
     'Customer Contact:     ' + s.customerContact,
     'Project Name:         ' + s.projectName,
@@ -1271,10 +1339,16 @@ function buildEmailBody(s, passed) {
     lines.push('Pipe Type:        ' + (e.pipeType||'—'));
     lines.push('Groove Type:      ' + (e.grooveType||'—'));
     lines.push('Pipe Size:        ' + (e.pipeSize||'—'));
+    lines.push('Spool Number:     ' + (e.spoolNumber||'—'));
     lines.push('Spool Length:     ' + (e.spoolLength||'—'));
-    lines.push('A Dimension:      ' + (e.aDimension||'—').toUpperCase());
-    lines.push('C Dimension:      ' + (e.cDimension||'—').toUpperCase());
-    lines.push('Flare Measurement:' + ' ' + (e.flareMeasurement||'—').toUpperCase());
+    lines.push('--- Groove 1 ---');
+    lines.push('  A Dimension:    ' + (e.g1aDimension||'—').toUpperCase());
+    lines.push('  C Dimension:    ' + (e.g1cDimension||'—').toUpperCase());
+    lines.push('  Flare:          ' + (e.g1flare||'—').toUpperCase());
+    lines.push('--- Groove 2 ---');
+    lines.push('  A Dimension:    ' + (e.g2aDimension||'—').toUpperCase());
+    lines.push('  C Dimension:    ' + (e.g2cDimension||'—').toUpperCase());
+    lines.push('  Flare:          ' + (e.g2flare||'—').toUpperCase());
     lines.push('Result:           ' + (e.overallResult||'—'));
     if (e.notes) {
       lines.push('Observations:     ' + e.notes + (e.notesResult ? ' [' + e.notesResult.toUpperCase() + ']' : ''));
@@ -1403,7 +1477,7 @@ function buildPDF() {
   var r1 = y + 9, r2 = y + 23, r3 = y + 37;
   infoCell('Date', s.date, c1, r1);
   infoCell('Project Name', s.projectName, c2, r1);
-  infoCell('Operator', s.operator + '  ·  ' + s.company, c1, r2);
+  infoCell('Technician', s.operator + '  ·  ' + s.company, c1, r2);
   infoCell('Project Location', s.projectLocation, c2, r2);
   infoCell('Customer', s.customerName + (s.customerContact && s.customerContact !== '(not set)' ? '  ·  ' + s.customerContact : ''), c1, r3);
   var genDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
@@ -1446,10 +1520,14 @@ function buildPDF() {
       e.pipeType || '',
       e.grooveType || '',
       e.pipeSize || '',
+      e.spoolNumber || '',
       e.spoolLength || '',
-      (e.aDimension || '').toUpperCase(),
-      (e.cDimension || '').toUpperCase(),
-      (e.flareMeasurement || '').toUpperCase(),
+      (e.g1aDimension || '').toUpperCase(),
+      (e.g1cDimension || '').toUpperCase(),
+      (e.g1flare || '').toUpperCase(),
+      (e.g2aDimension || '').toUpperCase(),
+      (e.g2cDimension || '').toUpperCase(),
+      (e.g2flare || '').toUpperCase(),
       (e.overallResult || '').toUpperCase(),
       e.notes || '',
       e.photos && e.photos.length ? e.photos.length + (e.photos.length === 1 ? ' photo' : ' photos') : '—'
@@ -1459,7 +1537,7 @@ function buildPDF() {
   doc.autoTable({
     startY: y,
     margin: { left: margin, right: margin },
-    head: [['Groove #', 'Tool', 'Pipe Type', 'Type', 'Pipe Size', 'Spool', 'A Dim', 'C Dim', 'Flare', 'Result', 'Observations', 'Photos']],
+    head: [['Groove #', 'Tool', 'Pipe Type', 'Type', 'Pipe Size', 'Spool #', 'Spool Len', 'G1 A', 'G1 C', 'G1 Flare', 'G2 A', 'G2 C', 'G2 Flare', 'Result', 'Observations', 'Photos']],
     body: tableBody,
     theme: 'grid',
     headStyles: {
@@ -1547,7 +1625,7 @@ function buildPDF() {
         doc.setFontSize(8); doc.setFont('helvetica', 'bold');
         doc.setTextColor.apply(doc, navy);
         doc.text(e.grooveNumber, margin, curY + 5);
-        var det = [e.toolType, e.pipeType, e.pipeSize, e.spoolLength].filter(Boolean).join('  |  ');
+        var det = [e.toolType, e.pipeType, e.pipeSize, e.spoolNumber ? 'Spool: ' + e.spoolNumber : '', e.spoolLength].filter(Boolean).join('  |  ');
         doc.setFontSize(6.5); doc.setFont('helvetica', 'normal');
         doc.setTextColor(110, 110, 110);
         doc.text(det, margin + 38, curY + 5);
@@ -1623,7 +1701,7 @@ function downloadPDF() {
 function downloadCSV() {
   if (!validateSession()) return;
   if (entries.length === 0) { alert('No groove entries to export.'); return; }
-  var headers = ['Groove #','Roll Groove Tool','Groove Type','Pipe Type','Pipe Size','A Dimension','A Result','C Dimension','C Result','Flare Measurement','Flare Result','Observations','Overall Result'];
+  var headers = ['Groove #','Roll Groove Tool','Groove Type','Pipe Type','Pipe Size','Spool Number','Spool Length','G1 A Dim','G1 C Dim','G1 Flare','G2 A Dim','G2 C Dim','G2 Flare','Observations','Obs. Result','Overall Result'];
   var rows = entries.map(function(e) {
     return [
       e.grooveNumber,
@@ -1631,12 +1709,14 @@ function downloadCSV() {
       e.grooveType || '',
       e.pipeType || '',
       e.pipeSize || '',
-      e.aDimension || '',
-      e.aDimResult || '',
-      e.cDimension || '',
-      e.cDimResult || '',
-      e.flareMeasurement || '',
-      e.flareResult || '',
+      e.spoolNumber || '',
+      e.spoolLength || '',
+      e.g1aDimension || '',
+      e.g1cDimension || '',
+      e.g1flare || '',
+      e.g2aDimension || '',
+      e.g2cDimension || '',
+      e.g2flare || '',
       (e.notes || '').replace(/"/g, '""'),
       e.notesResult || '',
       e.overallResult || ''
