@@ -588,7 +588,20 @@ td .photo-thumb { width: 48px; height: 48px; }
 
       <div class="form-group">
         <label>Spool Number</label>
-        <input type="text" id="spoolNumber" placeholder="Spool #">
+        <select id="spoolNumber">
+          <option value="">— Select —</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="N/A">N/A</option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -1250,7 +1263,7 @@ function renderEditRow(e, i) {
     '<td style="vertical-align:top;padding-top:8px;font-size:0.78rem;font-weight:600;white-space:nowrap;">' + e.grooveNumber + '</td>' +
     '<td style="vertical-align:top;min-width:110px;">' + mkSel('ie_tool', ['RG2300','RG3210','RG3400','RG4200','VE271','VE417','VE460'], e.toolType||'') + '</td>' +
     '<td style="vertical-align:top;min-width:90px;"><select id="ie_grooveType" style="' + s + '"><option value="">—</option>' + ['OGS','AGS','Cut Groove','End Seal','Other'].map(function(o){ return '<option value="'+o+'"'+(o===e.grooveType?' selected':'')+'>'+o+'</option>'; }).join('') + '</select></td>' +
-    '<td style="vertical-align:top;min-width:80px;"><input type="text" id="ie_spoolNumber" value="' + (e.spoolNumber||'').replace(/"/g,'&quot;') + '" placeholder="Spool #" style="' + s + '"></td>' +
+    '<td style="vertical-align:top;min-width:80px;"><select id="ie_spoolNumber" style="' + s + '">' + ['','1','2','3','4','5','6','7','8','9','10','N/A'].map(function(v){ return '<option value="'+v+'"'+(v===(e.spoolNumber||'')?' selected':'')+'>'+(v||'—')+'</option>'; }).join('') + '</select></td>' +
     '<td style="vertical-align:top;min-width:110px;"><div style="display:flex;gap:4px;"><input type="number" id="ie_spoolLength" value="' + spoolNum + '" min="0" step="any" style="flex:1;min-width:0;font-size:0.78rem;"><select id="ie_spoolUnit" style="width:54px;font-size:0.78rem;">' + ['','mm','mtr','in','ft'].map(function(u){ return '<option value="'+u+'"'+(u===spoolUnit?' selected':'')+'>'+( u||'Unit')+'</option>'; }).join('') + '</select></div></td>' +
     '<td style="vertical-align:top;min-width:130px;">' + mkSel('ie_pipeType', ['Carbon Steel Sch 10','Carbon Steel Sch 40','Carbon Steel Sch 80','Stainless Steel Sch 10S','Stainless Steel Sch 40S','CPVC','PVC'], e.pipeType||'') + '</td>' +
     '<td style="vertical-align:top;min-width:110px;">' + mkSel('ie_pipeSize', ['3/4" (DN20)','1" (DN25)','1-1/4" (DN32)','1-1/2" (DN40)','2" (DN50)','2-1/2" (DN65)','3" (DN80)','3-1/2" (DN90)','4" (DN100)','5" (DN125)','6" (DN150)','8" (DN200)','10" (DN250)','12" (DN300)','14" (DN350)','16" (DN400)','18" (DN450)','20" (DN500)','22" (DN550)','24" (DN600)'], e.pipeSize||'') + '</td>' +
